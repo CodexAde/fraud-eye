@@ -83,7 +83,7 @@ const HomePage = () => {
                                 <Sparkles size={20} color="white" />
                             </div>
                             <span style={{ fontSize: '22px', fontWeight: '900', color: '#111827', letterSpacing: '-0.04em' }}>
-                                Crix
+                                FraudWatch
                             </span>
                         </Link>
 
@@ -148,7 +148,7 @@ const HomePage = () => {
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                             <div style={{ width: '24px', height: '24px', background: '#2563EB', borderRadius: '6px' }}></div>
-                            <span style={{ fontSize: '18px', fontWeight: '800', color: '#111827' }}>Crix</span>
+                            <span style={{ fontSize: '18px', fontWeight: '800', color: '#111827' }}>FraudWatch</span>
                         </div>
                         <p style={{ color: '#6B7280', fontSize: '14px', maxWidth: '280px' }}>
                             Leading the way in transaction security and fraud analysis.

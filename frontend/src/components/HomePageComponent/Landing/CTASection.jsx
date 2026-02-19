@@ -39,7 +39,7 @@ export default function CTASection() {
           transition={{ delay: 0.2 }}
           style={{ fontSize: '20px', opacity: 0.9, maxWidth: '600px', margin: '0 auto 48px', position: 'relative' }}
         >
-          Join thousands of platforms using Crix to protect their users from fraudulent activities.
+          Join thousands of platforms using FraudWatch to protect their users from fraudulent activities.
         </motion.p>
         
         <motion.div

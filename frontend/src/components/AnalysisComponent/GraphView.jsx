@@ -1,7 +1,26 @@
 import React, { useMemo } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
+import { Users } from 'lucide-react';
 
 const GraphView = ({ data }) => {
+  const containerRef = React.useRef(null);
+  const [dimensions, setDimensions] = React.useState({ width: 800, height: 600 });
+
+  React.useEffect(() => {
+    if (containerRef.current) {
+      const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+          setDimensions({
+            width: entry.contentRect.width,
+            height: entry.contentRect.height
+          });
+        }
+      });
+      resizeObserver.observe(containerRef.current);
+      return () => resizeObserver.disconnect();
+    }
+  }, []);
+
   const graphData = useMemo(() => {
     if (!data || !data.transactions) return { nodes: [], links: [] };
 
@@ -35,7 +54,11 @@ const GraphView = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="apple-card" style={{ height: '600px', padding: '0', overflow: 'hidden', position: 'relative' }}>
+    <div 
+      ref={containerRef}
+      className="apple-card" 
+      style={{ height: '700px', width: '100%', padding: '0', overflow: 'hidden', position: 'relative', backgroundColor: '#FFFFFF' }}
+    >
       <div style={{ 
         position: 'absolute', 
         top: '20px', 
@@ -53,6 +76,33 @@ const GraphView = ({ data }) => {
           <h3 style={{ fontSize: '13px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Relation Mapping</h3>
         </div>
         <p style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Neural Network Visualization</p>
+      </div>
+
+      <div style={{ 
+        position: 'absolute', 
+        bottom: '20px', 
+        left: '20px', 
+        zIndex: 10, 
+        display: 'flex', 
+        flexDirection: 'column',
+        gap: '4px'
+      }}>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '8px',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          backdropFilter: 'blur(8px)',
+          padding: '8px 16px',
+          borderRadius: '20px',
+          border: '1px solid var(--border)',
+          fontSize: '11px',
+          color: '#2563EB',
+          fontWeight: '700',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)'
+        }}>
+          <Users size={12} /> Use two fingers to pan and zoom
+        </div>
       </div>
 
       <div style={{ 
@@ -94,6 +144,8 @@ const GraphView = ({ data }) => {
       </div>
 
       <ForceGraph2D
+        width={dimensions.width}
+        height={dimensions.height}
         graphData={graphData}
         nodeLabel="name"
         nodeColor={n => n.color || '#0071E3'}

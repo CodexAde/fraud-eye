@@ -76,7 +76,7 @@ export default function BentoGrid() {
         <h2 style={{ fontSize: '36px', fontWeight: '800', color: '#111827' }}>Advanced Capabilities</h2>
       </div>
 
-      <div style={gridStyle}>
+      <div className="bento-grid" style={gridStyle}>
         {features.map((feature, idx) => (
           <motion.div
             key={feature.id}

@@ -7,7 +7,7 @@ export default function Showcase() {
       padding: '100px 24px', 
       backgroundColor: '#F8FAFF',
       overflow: 'hidden'
-    }}>
+    }} id="showcase-section">
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '64px' }}>
           <motion.h2
@@ -53,7 +53,7 @@ export default function Showcase() {
             }}
           />
           
-          <div style={{
+          <div className="active-scans-badge" style={{
             position: 'absolute',
             bottom: '-30px',
             right: '40px',
@@ -63,8 +63,7 @@ export default function Showcase() {
             color: 'white',
             boxShadow: '0 20px 25px -5px rgba(37, 99, 235, 0.3)',
             maxWidth: '240px',
-            display: 'none',
-            '@media (min-width: 768px)': { display: 'block' }
+            zIndex: 10
           }}>
             <p style={{ fontSize: '14px', fontWeight: '500', opacity: 0.8, marginBottom: '8px' }}>Active Scans</p>
             <p style={{ fontSize: '24px', fontWeight: '800' }}>1,284,019</p>
@@ -100,6 +99,16 @@ export default function Showcase() {
           ))}
         </div>
       </div>
+      <style>{`
+        .active-scans-badge {
+          display: none;
+        }
+        @media (min-width: 768px) {
+          .active-scans-badge {
+            display: block;
+          }
+        }
+      `}</style>
     </section>
   );
 }

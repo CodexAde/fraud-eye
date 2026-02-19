@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, AlertTriangle, Users, Timer, Activity } from 'lucide-react';
+import { Download, AlertTriangle, Users, Timer, Activity, ShieldAlert, CreditCard } from 'lucide-react';
 
 const AnalysisResults = ({ results, onDownload }) => {
   if (!results) return null;
@@ -36,9 +36,14 @@ const AnalysisResults = ({ results, onDownload }) => {
       }}>
         <div className="apple-card" style={{ gridColumn: 'span 2', padding: '0', overflow: 'hidden' }}>
           <div style={{ padding: '24px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <h3 style={{ fontSize: '20px', fontWeight: '700' }}>Anomalous Entities</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>High Probability Risk Vectors</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ backgroundColor: '#FEF2F2', padding: '10px', borderRadius: '12px', color: '#DC2626' }}>
+                <ShieldAlert size={20} />
+              </div>
+              <div>
+                <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#111827' }}>Flagged Entities</h3>
+                <p style={{ color: '#EF4444', fontSize: '12px', fontWeight: '600' }}>High-Risk Account Deviations</p>
+              </div>
             </div>
             <button 
               onClick={onDownload}
@@ -61,9 +66,20 @@ const AnalysisResults = ({ results, onDownload }) => {
                  {results.suspicious_accounts.map((acc, i) => (
                   <tr key={i} style={{ borderBottom: '1px solid var(--border)' }}>
                     <td style={{ padding: '16px 24px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--accent)' }} />
-                        <span style={{ fontFamily: 'monospace', fontWeight: '600', fontSize: '14px' }}>{acc.account_id}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{ 
+                          width: '32px', 
+                          height: '32px', 
+                          borderRadius: '10px', 
+                          backgroundColor: '#F3F4F6', 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          justifyContent: 'center',
+                          color: '#4B5563'
+                        }}>
+                          <CreditCard size={14} />
+                        </div>
+                        <span style={{ fontFamily: 'monospace', fontWeight: '700', fontSize: '14px', color: '#111827' }}>{acc.account_id}</span>
                       </div>
                     </td>
                     <td style={{ padding: '16px 24px', textAlign: 'center' }}>
