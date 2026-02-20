@@ -1,10 +1,24 @@
 # FraudWatch
 
-**FraudWatch** is an advanced detection tool designed for the **RIFT 2026 Money Muling Detection Challenge** (Problem Statement 3). Built by Team **abc**, this project tackles the global crisis of illegal money movement—a $2 trillion problem representing nearly 5% of the world's economy.
+**FraudWatch** is an advanced detection tool designed for the **RIFT 2026 Money Muling Detection Challenge** (Problem Statement 3). Built by Team **abc**, this project tackles the global crisis of illegal money movement — a $2 trillion problem representing nearly 5% of the world's economy.
 
 Inspired by architectural marvels of security like Apple Pay's tokenization, FraudWatch leverages **graph-based analysis** and **machine learning** to uncover suspicious networks in high-frequency, real-time UPI transactions.
 
-## Key Features
+---
+
+## 🔐 Default Credentials (Seeded Admin)
+
+| Field    | Value           |
+|----------|-----------------|
+| Email    | admin@admin.com |
+| Password | admin@rift      |
+| Role     | Admin           |
+
+> These credentials are automatically seeded into the database on first server startup.
+
+---
+
+## Features
 
 1. **Supervised Learning Engine**
    Utilizes a Random Forest classifier to analyze transaction patterns and assign risk scores to individual accounts.
@@ -13,10 +27,10 @@ Inspired by architectural marvels of security like Apple Pay's tokenization, Fra
    - **Circular Transaction Detection:** Identifies cycles (e.g., A → B → C → A).
    - **Smurfing Detection:** Flags rapid fan-in/fan-out transfer behaviors.
    - **Shell Account Layering:** Tracks suspicious money flows through low-activity accounts.
-   - **Transparency & Velocity Analysis:** Pinpoints accounts exhibiting unusual transaction speeds or massive volumes.
+   - **Transparency & Velocity Analysis:** Pinpoints accounts with unusual transaction speeds or massive volumes.
 
 3. **Interactive Relational Graph**
-   - **Nodes:** Represent individual accounts. Hover to see exact Account ID, Suspicion Score, and Transaction Count.
+   - **Nodes:** Represent individual accounts. Hover to see Account ID, Suspicion Score, and Transaction Count.
    - **Edges:** Represent money transfers.
    - **Risk Color Coding:**
      - **Red:** High Risk
@@ -26,17 +40,35 @@ Inspired by architectural marvels of security like Apple Pay's tokenization, Fra
    - Visualizes dense connections to dynamically expose potential mule rings.
 
 4. **Actionable Insights & Reporting**
-   - **Summary Data Table:** Displays Ring ID, Pattern Type, Member Count, and Risk Score. Highly responsive, allowing quick sorting and filtering.
-   - **JSON Report Export:** Generates an automated, audit-ready format containing suspicious accounts, exact scores, fraud ring members, and overall summary stats (total accounts analyzed, total flagged, rings detected, processing time).
+   - **Summary Data Table:** Displays Ring ID, Pattern Type, Member Count, and Risk Score. Sort and filter instantly.
+   - **JSON Report Export:** Generates an audit-ready report containing suspicious accounts, fraud ring members, and overall summary stats.
+
+---
 
 ## How It Works
 
-Users begin the process by uploading a dataset of UPI transactions in **CSV format** containing crucial fields like sender, receiver, amount, and timestamp. The system instantly processes this input, builds the relational graph, applies the Random Forest scoring model, and outputs actionable, real-time visual and tabular intelligence.
+Upload a CSV of UPI transactions → the system builds the relational graph, scores each account with the Random Forest model, and outputs real-time visual + tabular intelligence ready for audit or automated analysis.
 
-## Why UPI?
+---
 
-UPI transactions are high-frequency, real-time, and contain detailed hop-to-hop data metrics. This makes it the perfect sandbox for tracking down multi-hop mule rings, smurfing activities, and shell accounts efficiently and safely.
+## Tech Stack
+
+| Layer    | Technology                              |
+|----------|-----------------------------------------|
+| Frontend | React, Vite, CSS                        |
+| Backend  | Node.js, Express.js                     |
+| Database | MongoDB (via Mongoose)                  |
+| Auth     | JWT (JSON Web Tokens), bcryptjs         |
+| ML       | Python – Random Forest (scikit-learn)   |
+
+---
+
+## Setup
+
+See [SETUP.md](./SETUP.md) for full installation and run instructions.
+
+---
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. Copyright (c) 2026 abc.
+This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details. Copyright (c) 2026 abc.
